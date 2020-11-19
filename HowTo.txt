@@ -1,0 +1,23 @@
+npm init -y
+npm i -D typescript ts-node
+npx typescript --init or tsc --init 
+
+
+npm i -D eslint express @typescript-eslint/parser @typescript-eslint/eslint-plugin @types/express prettier eslint-config-prettier eslint-plugin-prettier husky nodemon
+
+All this files are already congured. so all you need to do is just copy and paste it into the new project and change the names of the project
+.eslintignore
+.eslintrc.js
+.gitignore
+.prettierignore
+.prettierrc
+nodemon.json
+package.json
+tsconfig.json
+
+Additionals
+eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard
+
+copy this settings.sjon to new install of vs code to keep all your settingsand install 
+Custom Css an JS Loader plugin, Eslint plugin, Prettier-code formatger plugin
+
