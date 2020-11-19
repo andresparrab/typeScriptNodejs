@@ -9,6 +9,7 @@ const routes = (app: Application): void => {
   app.get("/user/:id", UserController.getUserByID);
   app.get("/searchUser", UserController.getUserbyNameQuery);
   app.delete("/searchUserAndDelete", UserController.DeleteUserbyNameQuery);
+  app.put("/user/:id", UserController.UpdateUserInfo);
 };
 
 export default {

@@ -8,6 +8,7 @@ const connectToDatabase = async (): Promise<any> => {
     const DB_URL: any = process.env.DATABASE_URL;
     //const DB_URL: any = process.env.ATLAS_URI;
     await mongoose.connect(DB_URL, {
+      useFindAndModify: false,
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,

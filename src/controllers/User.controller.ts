@@ -4,6 +4,8 @@ import "mongoose";
 import { error } from "console";
 //import * as  Mongoose  from "mongoose";
 
+//// CURD ---------->>>>>>>>>>>>
+
 /// Create new user
 const createUser = async (req: express.Request, res: express.Response): Promise<void> => {
   const user = new UserModel({
@@ -60,6 +62,7 @@ const getUserbyNameQuery = async (req: express.Request, res: express.Response): 
     response.length !== 0
       ? res.status(200).send(response)
       : res.status(404).send({ message: "Could not find user with username: " + req.query.username });
+    console.log("Getting user NAME NAME NAME..........: ", req.query.username);
   } catch (error) {
     res.status(500).send({
       message: "Error occured while trying to retrieve user with username: " + req.query.username,
@@ -67,16 +70,42 @@ const getUserbyNameQuery = async (req: express.Request, res: express.Response): 
     });
   }
 };
+// Update User by name
+const UpdateUserInfo = async (req: express.Request, res: express.Response): Promise<any> => {
+  try {
+    if (!req.body) {
+      return res.status(400).send({ message: " Cannot update empty values" });
+    }
+    const response = await UserModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        username: req.body.username,
+        password: req.body.password,
+      },
+      { new: true }
+    );
+    res.status(200).send(response);
 
-// Delete User
+    console.log("inside Update");
+  } catch (error) {
+    res.status(500).send({
+      message: "Error accured while trying to updade he values of the user id " + req.params.id,
+      error: error.message,
+    });
+  }
+};
+
+// Delete User by name
 const DeleteUserbyNameQuery = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const response = await UserModel.findByIdAndDelete(await UserModel.find({ username: req.query.username }));
 
-    res.status(200).send(response);
+    res.status(200).send({
+      message: `Successfuly deleted user with User ID : ${response?.id}`,
+    });
   } catch (error) {
     res.status(500).send({
-      message: "Error occured while trying to retrieve user with username: " + req.query.username,
+      message: "Error occured while trying to delete user with username: " + req.query.username,
       error: error.message,
     });
   }
@@ -88,4 +117,5 @@ export default {
   getUserByID,
   getUserbyNameQuery,
   DeleteUserbyNameQuery,
+  UpdateUserInfo,
 };
