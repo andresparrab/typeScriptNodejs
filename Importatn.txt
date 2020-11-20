@@ -1,0 +1,24 @@
+make an file inte the root folder with name tsconfig.testing.json
+
+write this in the file: 
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es2015",
+      "lib": ["es2017"],
+      "declaration": false,
+      "noImplicitAny": false,
+      "removeComments": true,
+      "inlineSourceMap": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true,   
+    },
+    "include": ["scripts/**/*.ts", "src/**/*.ts", "node_modules/lodash-es/**/*.js"]
+  }
+
+  then
+
+  in package.json write this in the scripts section and make sure your test folder is inside the /src folder
+   "test": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'src/test/**/*.ts'"
+
+run the  test with npm test

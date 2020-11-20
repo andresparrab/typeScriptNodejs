@@ -32,3 +32,5 @@ app.use(Middlewares.errHandler);
 //Start server
 Configuration.connectToDatabase();
 Configuration.connectToPort(app);
+
+export default app;

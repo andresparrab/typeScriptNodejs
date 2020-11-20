@@ -68,6 +68,6 @@
   },
 
 "lib": ["es2016"],
-"include": ["src/**/*"],
+"include": ["src/**/*", "test"],
 "exclude": ["node_modules", "./build/**/*"]
 }
